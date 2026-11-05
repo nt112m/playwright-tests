@@ -13,6 +13,17 @@ def test_login_button(page: Page):
     page.goto("https://www.saucedemo.com")
     expect(page.get_by_text("Accepted usernames are:")).to_be_visible()
 
+    def test_check(page: Page):
+    page.goto("https://the-internet.herokuapp.com/checkboxes")
+    page.get_by_role("checkbox").first.check()
+    expect(page.get_by_role("checkbox").first).to_be_checked()
+
+
+def test_select_option(page: Page):
+    page.goto("https://the-internet.herokuapp.com/dropdown")
+    page.locator("#dropdown").select_option("Option 2")
+    expect(page.locator("#dropdown")).to_have_value("2")
+
 
 
     
