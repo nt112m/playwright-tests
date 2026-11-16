@@ -25,3 +25,10 @@ def test_create_post():
 def test_delete_post():
     response = requests.delete("https://jsonplaceholder.typicode.com/posts/1")
     assert response.status_code == 200
+
+import requests
+import pytest
+@pytest.mark.parametrize("post_id", [1, 2, 3])
+def test_get_several_posts(post_id):
+    response = requests.get(f"https://jsonplaceholder.typicode.com/posts/{post_id}")
+    assert response.status_code == 200
