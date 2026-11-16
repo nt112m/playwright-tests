@@ -21,3 +21,7 @@ def test_create_post():
     response = requests.post("https://jsonplaceholder.typicode.com/posts", json=new_post)
     assert response.status_code == 201
     assert response.json()["title"] == "hello"
+
+def test_delete_post():
+    response = requests.delete("https://jsonplaceholder.typicode.com/posts/1")
+    assert response.status_code == 200
