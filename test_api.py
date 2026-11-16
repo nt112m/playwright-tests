@@ -15,4 +15,9 @@ def test_get_all_posts():
     response = requests.get("https://jsonplaceholder.typicode.com/posts")
     assert response.status_code == 200
     assert len(response.json()) == 100
-    
+
+def test_create_post():
+    new_post = {"title": "hello", "body": "my first post", "userId": 1}
+    response = requests.post("https://jsonplaceholder.typicode.com/posts", json=new_post)
+    assert response.status_code == 201
+    assert response.json()["title"] == "hello"
