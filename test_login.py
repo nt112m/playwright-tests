@@ -15,10 +15,8 @@ def test_invalid_login(page: Page):
     expect(page.get_by_text("Username and password do not match")).to_be_visible()
 
 
-def test_add_to_cart(page: Page):
-    login_page = LoginPage(page)
-    login_page.login("standard_user", "secret_sauce")
-    cart_page = CartPage(page)
+def test_add_to_cart(logged_in_page):
+    cart_page = CartPage(logged_in_page)
     cart_page.add_product_to_cart()
     cart_page.open_cart()
     assert cart_page.get_cart_item_name()
