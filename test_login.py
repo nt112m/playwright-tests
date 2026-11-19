@@ -28,3 +28,15 @@ def test_checkout_page(logged_in_page):
     cart_page.open_cart()
     logged_in_page.get_by_role("button", name="Checkout").click()
     expect(logged_in_page).to_have_url("https://www.saucedemo.com/checkout-step-one.html")
+
+
+def test_checkout_details(logged_in_page):
+    cart_page = CartPage(logged_in_page)
+    cart_page.add_product_to_cart()
+    cart_page.open_cart()
+    logged_in_page.get_by_role("button", name="Checkout").click()
+    logged_in_page.get_by_placeholder("First Name").fill("Dani")
+    logged_in_page.get_by_placeholder("Last Name").fill("Cohen")
+    logged_in_page.get_by_placeholder("Zip/Postal Code").fill("12345")
+    logged_in_page.get_by_role("button", name="Continue").click()
+    expect(logged_in_page).to_have_url("https://www.saucedemo.com/checkout-step-two.html")
