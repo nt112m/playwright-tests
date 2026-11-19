@@ -22,6 +22,9 @@ def test_add_to_cart(logged_in_page):
     assert cart_page.get_cart_item_name()
 
 
-
-
-
+def test_checkout_page(logged_in_page):
+    cart_page = CartPage(logged_in_page)
+    cart_page.add_product_to_cart()
+    cart_page.open_cart()
+    logged_in_page.get_by_role("button", name="Checkout").click()
+    expect(logged_in_page).to_have_url("https://www.saucedemo.com/checkout-step-one.html")
