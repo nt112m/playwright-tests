@@ -41,6 +41,7 @@ def test_checkout_details(logged_in_page):
     logged_in_page.get_by_role("button", name="Continue").click()
     expect(logged_in_page).to_have_url("https://www.saucedemo.com/checkout-step-two.html")
 
+
 def test_wait_for_inventory(page: Page):
     login_page = LoginPage(page)
     login_page.login("standard_user", "secret_sauce")
